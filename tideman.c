@@ -262,16 +262,7 @@ void lock_pairs(void)
             }
         }
 
-        if (winner == loser)
-        {
-            isCycle = true;
-        }
-        else
-        {
-            isCycle = false;
-        }
-
-        if (!isCycle)
+        if (winner != loser)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
