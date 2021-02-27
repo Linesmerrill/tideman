@@ -3,7 +3,7 @@ Implement a program that runs a [Tideman](https://cs50.harvard.edu/x/2021/psets/
 
 ## How to compile
 
-`$gcc tideman.c -lcs50 `
+`$gcc tideman.c -lcs50`
 
 ## How to execute
 

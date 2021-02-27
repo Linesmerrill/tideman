@@ -16,8 +16,7 @@ typedef struct
 {
     int winner;
     int loser;
-}
-pair;
+} pair;
 
 // Array of candidates
 string candidates[MAX];
@@ -25,9 +24,6 @@ pair pairs[MAX * (MAX - 1) / 2];
 
 int pair_count;
 int candidate_count;
-
-// My Function prototype
-bool cycle(int winner, int loser);
 
 // Function prototypes
 bool vote(int rank, string name, int ranks[]);
@@ -86,7 +82,6 @@ int main(int argc, string argv[])
                 printf("Invalid vote.\n");
                 return 3;
             }
-
         }
 
         record_preferences(ranks);
@@ -100,39 +95,6 @@ int main(int argc, string argv[])
     print_winner();
     return 0;
 }
-
-bool cycle(int winner, int loser)
-{
-    while (winner != -1 && winner != loser)
-    {
-        bool found = false;
-
-        for (int i = 0; i < candidate_count; i++)
-        {
-            if (locked[i][winner])
-            {
-                found = true;
-                winner = i; //alice
-            }
-        }
-
-        if (!found)
-        {
-            winner = -1;
-        }
-
-
-    }
-
-    if (winner == loser)
-    {
-        return true;
-    }
-    return false;
-}
-
-
-
 
 // Update ranks given a new vote
 bool vote(int rank, string name, int ranks[])
@@ -186,7 +148,6 @@ void add_pairs(void)
     //to be the number of pairs of candidates. (the pairs
     //should thus all be stored between pairs[0] and
     //pairs[pair_count - 1], inclusive).
-
 
     //Loop through the candidates in a nested for loop
     // I might need to use MAX here?
@@ -272,12 +233,45 @@ void sort_pairs(void)
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
+// Creates the locked graph, adding all edges in decreasing order of victory
+// strength so long as the edge would not create a cycle
 void lock_pairs(void)
 {
-    //working code
     for (int i = 0; i < pair_count; i++)
     {
-        if (!cycle(pairs[i].winner, pairs[i].loser))
+        bool isCycle = false;
+        int winner = pairs[i].winner;
+        int loser = pairs[i].loser;
+
+        while (winner != -1 && winner != loser)
+        {
+            bool found = false;
+
+            for (int j = 0; j < candidate_count; j++)
+            {
+                if (locked[j][winner])
+                {
+                    found = true;
+                    winner = j;
+                }
+            }
+
+            if (!found)
+            {
+                winner = -1;
+            }
+        }
+
+        if (winner == loser)
+        {
+            isCycle = true;
+        }
+        else
+        {
+            isCycle = false;
+        }
+
+        if (!isCycle)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
@@ -289,7 +283,7 @@ void lock_pairs(void)
 void print_winner(void)
 {
     //Cycle through all the candidates
-    for (int i =  0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
         //create a booleon called source
         bool source = true;
