@@ -1,5 +1,5 @@
-# tideman
-Implement a program that runs a [Tideman](https://cs50.harvard.edu/x/2021/psets/3/tideman/) election
+# Tideman
+Implements a program that runs a [Tideman election](https://cs50.harvard.edu/x/2021/psets/3/tideman/)
 
 ## How to setup
 
