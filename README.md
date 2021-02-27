@@ -9,12 +9,12 @@ Follow along with these installation steps [CS50 Installation Docs](https://cs50
 
 ## How to compile
 
-`$gcc tideman.c -lcs50`
+`$gcc tideman.c -lcs50 -o tideman`
 
 ## How to execute
 
 
-`$./a.out Alice Bob Charlie`
+`$./tideman Alice Bob Charlie`
 ```
 Number of voters: 5
 Rank 1: Alice
