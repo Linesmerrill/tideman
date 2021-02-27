@@ -13,7 +13,6 @@ Follow along with these installation steps [CS50 Installation Docs](https://cs50
 
 ## How to execute
 
-
 `$./tideman Alice Bob Charlie`
 ```
 Number of voters: 5
