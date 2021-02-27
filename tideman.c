@@ -170,17 +170,6 @@ void record_preferences(int ranks[])
         }
     }
 
-    //DEBUG: Print a graph after each voter to visually see preferences.
-    // printf("\nPreferences: \n");
-    // for (int i = 0; i < candidate_count; i++)
-    // {
-    //     for (int j = 0; j < candidate_count; j++)
-    //     {
-    //       printf("%i ", preferences[i][j]);
-    //     }
-    //     printf("\n");
-    // }
-
     //return
     return;
 }
@@ -235,18 +224,6 @@ void add_pairs(void)
         }
     }
 
-
-
-    //DEBUG: Print all the pairs
-    //In this format: C0: 3 vs C1: 1
-    // printf("All Pairs: \n");
-    // for (int i = 0; i < candidate_count; i++)
-    // {
-    //     printf("C%i: %i vs C%i: %i\n", pairs[i].winner, preferences[pairs[i].winner][pairs[i].loser], pairs[i].loser, preferences[pairs[i].loser][pairs[i].winner]);
-    // }
-
-
-
     //return to the main loop
     return;
 }
@@ -292,16 +269,6 @@ void sort_pairs(void)
         pairs[preferred] = pairs[i];
         pairs[i] = p;
     }
-
-    //DEBUG: Print Strength of pairs
-    // printf("\nPairs Strength: \n");
-
-    // for (int i = 0; i < pair_count; i++)
-    // {
-    //     int n = preferences[pairs[i].winner][pairs[i].loser] - preferences[pairs[i].loser][pairs[i].winner];
-    //     printf("C%i-C%i: n: %i\n", pairs[i].winner, pairs[i].loser, n);
-    // }
-    // return;
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
@@ -316,53 +283,6 @@ void lock_pairs(void)
         }
     }
     return;
-
-    //NOT working code_________________________________________________________________________________________________________
-
-    //cycle through the pairs
-    // for (int i = 0; i < pair_count; i++)
-    // {
-    //     if (!cycle(pairs[i].winner, pairs[i].loser))
-    //     {
-    //         locked[pairs[i].winner][pairs[i].loser] = true;
-    //     }
-    // }
-    // return;
-
-    // int winner;
-    // int loser;
-
-    // while (winner != -1 && winner != loser)
-    // {
-    //     bool found = false;
-
-    //     for (int i = 0; i < candidate_count; i++)
-    //     {
-    //         if (locked[i][winner])
-    //         {
-    //             found = true;
-    //             winner = i;
-    //         }
-    //     }
-
-    //     if (!found)
-    //     {
-    //         winner = -1;
-    //     }
-
-
-    // }
-
-    // if (winner == loser)
-    // {
-    //     return true;
-    // }
-    // return false;
-
-    //NOT working code END_________________________________________________________________________________________________________
-
-
-
 }
 
 // Print the winner of the election
