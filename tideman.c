@@ -239,9 +239,8 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        bool isCycle = false;
-        int winner = pairs[i].winner;
-        int loser = pairs[i].loser;
+        int winner = pairs[i].winner; //makes a local copy so we can check without modifying the original values
+        int loser = pairs[i].loser; //makes a local copy so we can check without modifying the original values
 
         while (winner != -1 && winner != loser)
         {
