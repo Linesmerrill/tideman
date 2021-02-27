@@ -242,10 +242,12 @@ void lock_pairs(void)
         int winner = pairs[i].winner; //makes a local copy so we can check without modifying the original values
         int loser = pairs[i].loser; //makes a local copy so we can check without modifying the original values
 
+        //while the winner is found and they are not already a loser
         while (winner != -1 && winner != loser)
         {
             bool found = false;
 
+            //cycle through candidates
             for (int j = 0; j < candidate_count; j++)
             {
                 if (locked[j][winner])
@@ -255,12 +257,14 @@ void lock_pairs(void)
                 }
             }
 
+            //if none exists, then just skip this candidate
             if (!found)
             {
                 winner = -1;
             }
         }
 
+        // if we have found an edge that is not connected, then lets lock it in
         if (winner != loser)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
